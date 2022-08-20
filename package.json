@@ -1,0 +1,14 @@
+{
+  "name": "indicador_amizade",
+  "version": "1.0.0",
+  "description": "Sistema de sujestão de amizade ",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Murilo Alves",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

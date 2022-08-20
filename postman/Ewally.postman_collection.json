@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "321223c6-7ad4-46bb-bae3-d903cb17a58e",
+		"name": "Ewally",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19680770"
+	},
+	"item": [
+		{
+			"name": "index",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Person",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"asd\",\r\n    \"cpf\": \"06285363999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/person",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "person/:cpf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/person/06285363994",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"person",
+						"06285363994"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clean",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "relationship",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf1\": \"06285363994\",\r\n    \"cpf2\": \"06285363992\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/relationship",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"relationship"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

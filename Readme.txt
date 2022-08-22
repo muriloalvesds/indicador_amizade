@@ -12,19 +12,20 @@ Rota GET/fill-tests:
 **Alimenta com registros contendo numeros de CPF e nomes ficticios de acordo como modelo solicitado
 **Caso queira alimentar os registros manualmente não chamar a rota GET/fill-tests ou subistituir o Json na rota " app.get('/fill-tests'... " em server.js 
 
-Rota person post:
+Rota POST/person :
 Cadastra novo nome e cpf
 
-Rota person get:
+Rota GET/person:
 Recebe um cpf e retorna os dados completos
 
-Rota Clean:
+Rota GET/Clean:
 Limpa todos os registros
 
-Rota e Relationship:
+Rota POST/Relationship:
 Cadastrar relacionamentos com de 2 numeros de CPF
-Rota recomendation:
-Sugere relacionamentos
+
+Rota GET/recomendation:
+Sugere relacionamentos a partir de relacionamentos já cadastrados ou alimentados com a rota GET/fill-tests
 
 
 

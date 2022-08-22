@@ -1,10 +1,15 @@
 Para instalar:
-Instalar node https://nodejs.org/en/download/
+Instalar node https://nodejs.org/en/download/ (adicionar ao path das variaveis de ambiente)
+Instalar Docker https://docs.docker.com/desktop/install/windows-install/ (adicionar ao path das variaveis de ambiente)
 terminal ./> npm install 
 Para rodar o projeto:
 terminal ./> npm start
 
 Docker: 
+
+terminal ./> docker build . -t 'muriloalvesds/indicador_amizade' 
+terminal ./> docker run -p 3000:3000  -d 'muriloalvesds/indicador_amizade'
+terminal ./> docker-compose up --build
 
 Utilizar postman com as requests do diretório (importar no postman)./postman/Ewally.postman_collection.json
 

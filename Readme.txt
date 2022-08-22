@@ -1,9 +1,10 @@
 Para instalar:
-npm install 
+Instalar node https://nodejs.org/en/download/
+terminal ./> npm install 
 Para rodar o projeto:
-npm start
+terminal ./> npm start
 
-Utilizar postman com as requests do diretório (importar pelo painel do postman)./postman/Ewally.postman_collection.json
+Utilizar postman com as requests do diretório (importar no postman)./postman/Ewally.postman_collection.json
 Rota index: 
 **Alimenta com 20 registros contendo numeros de CPF e nomes ficticios
 **Caso queira alimentar os registros manualmente não chamar a rota index ou subistituir o Json na rota " app.get('/'... " em server.js 

@@ -147,12 +147,13 @@ app.post('/relationship',function(req,res){
 
 app.get('/Recommendations',function(req,res){
     
+    
     DB.users.forEach(function(user, val){
 
     // busca todos os amigos de user
-    list_of_relations = DB.relationship.filter(relation => (cpf1 == user.cpf || cpf2 == user.cpf) );
+    let list_of_relations = DB.relationship.filter(relation => (DB.relationship.cpf1 == user.cpf || DB.relationship.cpf2 == user.cpf) );
 
-    list_friends = []
+    const list_friends = []
     list_of_relations.forEach(function(relation) {
         if(relation.cpf1 != user.cpf) {
             list_friends.push(relation.cpf1);
@@ -165,7 +166,7 @@ app.get('/Recommendations',function(req,res){
 
     list_friends.forEach(function(friend){
             // Busca os relacionamentos do amigo
-            friends_relation = DB.relationship.filter(relation => (cpf1 == friend.cpf || cpf2 == friend.cpf) );
+            friends_relation = DB.relationship.filter(relation => (DB.relationship.cpf1 == friend.cpf || DB.relationship.cpf2 == friend.cpf) );
 
             // filtra todos os amigos que nao sao amigos de User
             friends_sugestions = friends_relation.filter(relation => !list_friends.includes(relation.cpf1) || !list_friends.includes(relation.cpf2) );
@@ -181,13 +182,14 @@ app.get('/Recommendations',function(req,res){
                     DB.recomendations[key]['user_cpf'] = user.cpf;
                     DB.recomendations[key]['sugested_friend'] = sugestion.cpf;
                     DB.recomendations[key]['relevance'] = 1;
+                    
                 }
             })
 
         });
     });
     
-
+    console.log(DB)
     res.send({"success": "true"});
 });
 

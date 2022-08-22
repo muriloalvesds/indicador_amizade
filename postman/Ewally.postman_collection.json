@@ -7,10 +7,23 @@
 	},
 	"item": [
 		{
-			"name": "index",
+			"name": "fill-tests",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/fill-tests",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"fill-tests"
+					]
+				}
 			},
 			"response": []
 		},
@@ -21,7 +34,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"asd\",\r\n    \"cpf\": \"06285363999\"\r\n}",
+					"raw": "{\r\n    \"name\": \"asd\",\r\n    \"cpf\": \"06285363993\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -29,9 +42,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/person",
+					"raw": "127.0.0.1:3000/person",
 					"host": [
-						"localhost"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
 					"port": "3000",
 					"path": [
@@ -47,14 +63,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/person/06285363994",
+					"raw": "127.0.0.1:3000/person/06285363993",
 					"host": [
-						"localhost"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
 					"port": "3000",
 					"path": [
 						"person",
-						"06285363994"
+						"06285363993"
 					]
 				}
 			},
@@ -64,12 +83,55 @@
 			"name": "Clean",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3000/clean",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"clean"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "relationship",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf1\" : \"06285363993\",\r\n    \"cpf2\" :  \"11111111190\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/relationship",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"relationship"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recommendations",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -78,21 +140,20 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cpf1\": \"06285363994\",\r\n    \"cpf2\": \"06285363992\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:3000/relationship",
+					"raw": "127.0.0.1:3000/Recommendations/11111111190",
 					"host": [
-						"localhost"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
 					"port": "3000",
 					"path": [
-						"relationship"
+						"Recommendations",
+						"11111111190"
 					]
 				}
 			},

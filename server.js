@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const users =[]
 // App
-app.get('/', (req, res) => {
+app.get('/fill-tests', (req, res) => {
   DB.users=[
     {
         "name": "Jimmy Page",
@@ -34,70 +34,33 @@ app.get('/', (req, res) => {
     {
         "name": "Fredy Mercury",
         "cpf": "11111111194"
-    },
-    {
-        "name": "Nicola Tesla",
-        "cpf": "06285363995"
-    },
-    {
-        "name": "Jimmy Hedrix",
-        "cpf": "11111111196"
-    },
-    {
-        "name": "Pitágoras",
-        "cpf": "11111111197"
-    },
-    {
-        "name": "Axel Rose",
-        "cpf": "11111111198"
-    },
-    {
-        "name": "Junny Simons",
-        "cpf": "11111111199"
-    },
-    {
-        "name": "Angus Young",
-        "cpf": "11111111180"
-    },
-    {
-        "name": "Monet",
-        "cpf": "11111111181"
-    },
-    {
-        "name": "Bil Gates",
-        "cpf": "11111111182"
-    },
-    {
-        "name": "Ken Thonpson",
-        "cpf": "11111111183"
-    },
-    {
-        "name": "John Lenon",
-        "cpf": "11111111184"
-    },
-    {
-        "name": "Richard Stallman",
-        "cpf": "11111111185"
-    },
-    {
-        "name": "Elton John",
-        "cpf": "11111111186"
-    },
-    {
-        "name": "Donald Knuth",
-        "cpf": "11111111187"
-    },
-    {
-        "name": "Marvin Minsky",
-        "cpf": "11111111188"
-    },
-    {
-        "name": "Ward Cunningham",
-        "cpf": "11111111189"
     }
   ];
 
-  res.send(DB.users);
+  DB.relationship=[
+    {
+        "cpf1": "11111111190",
+        "cpf2": "11111111191"
+    },
+    {
+        "cpf1": "11111111190",
+        "cpf2": "11111111192"
+    },
+    {
+        "cpf1": "11111111192",
+        "cpf2": "11111111194"
+    },
+    {
+        "cpf1": "11111111191",
+        "cpf2": "11111111193"
+    },
+    {
+        "cpf1": "11111111193",
+        "cpf2": "11111111192"
+    }
+  ];
+
+  res.send({"users": DB.users, "relationships": DB.relationship });
 });
 
 app.post('/person',function(req,res){
@@ -145,54 +108,65 @@ app.post('/relationship',function(req,res){
     }    
 });
 
-app.get('/Recommendations',function(req,res){
-    
-    
-    DB.users.forEach(function(user, val){
-
-    // busca todos os amigos de user
-    let list_of_relations = DB.relationship.filter(relation => (DB.relationship.cpf1 == user.cpf || DB.relationship.cpf2 == user.cpf) );
-
-    const list_friends = []
-    list_of_relations.forEach(function(relation) {
-        if(relation.cpf1 != user.cpf) {
-            list_friends.push(relation.cpf1);
-        } 
-        if(relation.cpf2 != user.cpf) {
-            list_friends.push(relation.cpf2);
+app.get('/Recommendations/:cpf',function(req,res){
+    try {
+        let user = (new User(null, req.params.cpf)).find()
+       
+        if (!user) {
+            res.status(404).send();
         }
-            
-    });
-
-    list_friends.forEach(function(friend){
-            // Busca os relacionamentos do amigo
-            friends_relation = DB.relationship.filter(relation => (DB.relationship.cpf1 == friend.cpf || DB.relationship.cpf2 == friend.cpf) );
-
-            // filtra todos os amigos que nao sao amigos de User
-            friends_sugestions = friends_relation.filter(relation => !list_friends.includes(relation.cpf1) || !list_friends.includes(relation.cpf2) );
-
-            friends_sugestions.forEach(function(sugestion){
-
-                // Chave composta para melhor performance
-                key = user.cpf + sugestion.cpf;
+        // busca todos os amigos de user
+        let list_of_relations = DB.relationship.filter(relation => (relation.cpf1 == user.cpf || relation.cpf2 == user.cpf) );
+          
+        const list_friends = []
+        list_of_relations.forEach(function(relation) {
+            if(relation.cpf1 != user.cpf) {
+                list_friends.push(relation.cpf1);
+            } 
+            if(relation.cpf2 != user.cpf) {
+                list_friends.push(relation.cpf2);
+            }
                 
-                if(key in DB.recomendations) {
-                    DB.recomendations[key]['relevance']++;
-                } else {
-                    DB.recomendations[key]['user_cpf'] = user.cpf;
-                    DB.recomendations[key]['sugested_friend'] = sugestion.cpf;
-                    DB.recomendations[key]['relevance'] = 1;
-                    
-                }
-            })
-
         });
-    });
-    
-    console.log(DB)
-    res.send({"success": "true"});
-});
+        list_friends.forEach(function(friend){
+            
+                // Busca os relacionamentos do amigo
+                let friends_relation = DB.relationship.filter(relation => ((relation.cpf1 == friend && relation.cpf2 != user.cpf) || (relation.cpf2 == friend && relation.cpf1 != user.cpf)) );
+                // filtra todos os amigos que nao sao amigos de User
+                let friends_sugestions = friends_relation.map(relation => {
+                    
+                    if( relation.cpf1 == friend && !list_friends.includes(relation.cpf2)){
 
+                        return relation.cpf2;
+                    }
+                    if(relation.cpf2 == friend && !list_friends.includes(relation.cpf1)) {
+                        return relation.cpf1;
+                    }
+                });
+                friends_sugestions.forEach(function(sugestion){
+                    
+                    // Chave composta para melhor performance
+                    let key = user.cpf + sugestion;
+                    if(key in DB.recommendations) {
+                        DB.recommendations[key]['relevance']++;
+                    } else {
+                        DB.recommendations[key]={
+                            'user_cpf' : user.cpf,
+                            'sugested_friend' : sugestion,
+                            'relevance' : 1
+                        }
+                    }
+                })
+        });
+        const reorder = Object.values(DB.recommendations);
+        reorder.sort(function(a, b){return  b.relevance - a.relevance });
+        const resp = reorder.map(i => i['sugested_friend']);
+        res.send(resp);
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

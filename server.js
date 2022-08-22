@@ -45,55 +45,55 @@ app.get('/', (req, res) => {
     },
     {
         "name": "Pitágoras",
-        "cpf": "06285363997"
+        "cpf": "11111111197"
     },
     {
         "name": "Axel Rose",
-        "cpf": "06285363998"
+        "cpf": "11111111198"
     },
     {
         "name": "Junny Simons",
-        "cpf": "06285363999"
+        "cpf": "11111111199"
     },
     {
-        "name": "Angu Young",
-        "cpf": "06285363980"
+        "name": "Angus Young",
+        "cpf": "11111111180"
     },
     {
         "name": "Monet",
-        "cpf": "06285363981"
+        "cpf": "11111111181"
     },
     {
         "name": "Bil Gates",
-        "cpf": "06285363982"
+        "cpf": "11111111182"
     },
     {
         "name": "Ken Thonpson",
-        "cpf": "06285363983"
+        "cpf": "11111111183"
     },
     {
         "name": "John Lenon",
-        "cpf": "06285363984"
+        "cpf": "11111111184"
     },
     {
         "name": "Richard Stallman",
-        "cpf": "06285363985"
+        "cpf": "11111111185"
     },
     {
         "name": "Elton John",
-        "cpf": "06285363986"
+        "cpf": "11111111186"
     },
     {
         "name": "Donald Knuth",
-        "cpf": "06285363987"
+        "cpf": "11111111187"
     },
     {
         "name": "Marvin Minsky",
-        "cpf": "06285363988"
+        "cpf": "11111111188"
     },
     {
         "name": "Ward Cunningham",
-        "cpf": "06285363989"
+        "cpf": "11111111189"
     }
   ];
 
@@ -146,7 +146,7 @@ app.post('/relationship',function(req,res){
 });
 
 app.get('/Recommendations',function(req,res){
-    /*
+    
     DB.users.forEach(function(user, val){
 
     // busca todos os amigos de user
@@ -186,7 +186,7 @@ app.get('/Recommendations',function(req,res){
 
         });
     });
-    */
+    
 
     res.send({"success": "true"});
 });

@@ -7,8 +7,9 @@ docker run -p 3000:3000  -dit muriloalvesds/indicador_amizade:v4
 
 AWS:
 http://18.233.6.80:3000/fill-test (essa rota semeia dados dados)
+Arquivo de instalação dependencias Docker para Aws em ./fata user.sh
 
-sem docker: 
+Sem docker: 
 terminal ./> npm install 
 Para rodar o projeto:
 terminal ./> npm start

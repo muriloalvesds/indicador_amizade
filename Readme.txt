@@ -1,13 +1,15 @@
 Para instalar:
 Instalar Docker https://docs.docker.com/desktop/install/windows-install/ (adicionar ao path das variaveis de ambiente)
 
-Docker: 
+Com Docker: 
+Repositório Dockerhub muriloalvesds/indicador_amizade
+docker run -p 3000:3000  -dit muriloalvesds/indicador_amizade:v4
 
-terminal ./> docker build . -t muriloalvesds/indicador_amizade
-terminal ./> docker run -p 3000:3000  -d 'muriloalvesds/indicador_amizade'
-terminal ./> docker-compose up --build
+AWS:
+http://18.233.6.80:3000/fill-test (essa rota semeia dados dados)
 
-sem docker: terminal ./> npm install 
+sem docker: 
+terminal ./> npm install 
 Para rodar o projeto:
 terminal ./> npm start
 

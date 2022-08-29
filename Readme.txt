@@ -3,10 +3,11 @@ Instalar Docker https://docs.docker.com/desktop/install/windows-install/ (adicio
 
 Com Docker: 
 Repositório Dockerhub muriloalvesds/indicador_amizade
+docker pull muriloalvesds/indicador_amizade
 docker run -p 3000:3000  -dit muriloalvesds/indicador_amizade:v4
 
 AWS:
-http://18.233.6.80:3000/fill-test (essa rota semeia dados dados)
+url: 18.233.6.80:3000/fill-test (essa rota semeia dados dados)
 Arquivo de instalação dependencias Docker para Aws em ./fata user.sh
 
 Sem docker: 

@@ -31,7 +31,7 @@ Rota GET/Clean:
 Limpa todos os registros
 
 Rota POST/Relationship:
-Cadastrar relacionamentos com de 2 numeros de CPF
+Cadastrar relacionamentos com 2 numeros de CPF
 
 Rota GET/recomendation:
 Sugere relacionamentos a partir de relacionamentos já cadastrados ou alimentados com a rota GET/fill-tests

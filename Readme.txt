@@ -34,7 +34,8 @@ Rota POST/Relationship:
 Cadastrar relacionamentos com 2 numeros de CPF
 
 Rota GET/recomendation:
-Sugere relacionamentos a partir de relacionamentos já cadastrados ou alimentados com a rota GET/fill-tests
+Sugere relacionamentos a partir de relacionamentos já cadastrados ou alimentados com a rota GET/fill-tests, baseado
+nos relacionamentos dos amigos de amigos
 
 
 
